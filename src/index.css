@@ -218,19 +218,32 @@
     background: hsl(var(--cell-highlight));
   }
 
+  /* CRITICAL UX: Visual distinction between pre-filled and user numbers */
   .sudoku-cell-container.given .sudoku-cell-input {
     color: hsl(var(--cell-given));
-    font-weight: 700;
+    font-weight: 800;
+    background: hsl(var(--cell-background) / 0.8);
   }
 
-  /* Thick borders for 3x3 blocks */
-  .sudoku-cell-container:nth-child(3n) {
-    border-right: 2px solid hsl(var(--grid-border-thick));
+  /* User-entered numbers - distinct blue color for clear differentiation */
+  .sudoku-cell-container:not(.given) .sudoku-cell-input:not(:placeholder-shown) {
+    color: hsl(220 70% 50%);
+    font-weight: 600;
   }
 
+  /* Enhanced 3x3 block borders for better grid readability */
+  .sudoku-cell-container:nth-child(3n):not(:nth-child(9n)) {
+    border-right: 3px solid hsl(var(--grid-border-thick));
+  }
+
+  .sudoku-cell-container:nth-child(6n):not(:nth-child(9n)) {
+    border-right: 3px solid hsl(var(--grid-border-thick));
+  }
+
+  /* Bottom borders for 3x3 blocks (rows 3 and 6) */
   .sudoku-cell-container:nth-child(n + 19):nth-child(-n + 27),
   .sudoku-cell-container:nth-child(n + 46):nth-child(-n + 54) {
-    border-bottom: 2px solid hsl(var(--grid-border-thick));
+    border-bottom: 3px solid hsl(var(--grid-border-thick));
   }
 
   /* Segmented Control for Difficulty Buttons */
