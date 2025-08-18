@@ -419,9 +419,15 @@
 
     /* GAME BOARD LAYOUT IMPROVEMENTS */
     
-    /* Add breathing room around the game board */
+    /* Add site-wide horizontal padding for proper breathing room */
+    body, #root {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
+    
+    /* Reduce vertical spacing to fit content without scrolling */
     .min-h-screen .flex-1 {
-      padding: 1.5rem 1rem !important;
+      padding: 1rem 0 !important;
       margin-top: 0 !important;
       box-sizing: border-box !important;
       display: flex !important;
