@@ -134,9 +134,9 @@
 }
 
 @layer components {
-  /* Sudoku Grid Styles - Bulletproof viewport-based sizing */
+  /* Sudoku Grid Styles - Mobile-first sizing */
   .sudoku-grid {
-    /* CRITICAL: Force exact viewport-based dimensions */
+    /* Mobile-first: Square grid that fits screen with proper margins */
     width: calc(100vw - 40px);
     height: calc(100vw - 40px);
     max-width: calc(100vw - 40px);
@@ -505,31 +505,19 @@
 
     /* Enhanced grid readability with proper border hierarchy */
     .sudoku-cell-container {
-      min-height: 44px !important;
+      min-height: 0 !important; /* Remove fixed height constraints */
       border: 0.5px solid hsl(var(--grid-border)) !important;
       box-sizing: border-box !important;
+      aspect-ratio: 1 !important; /* Ensure square cells */
     }
 
-    /* Thicker borders for 3x3 block separation */
-    .sudoku-cell-container:nth-child(3n):not(:nth-child(9n)) {
-      border-right: 2px solid hsl(var(--grid-border-thick)) !important;
-    }
-
-    .sudoku-cell-container:nth-child(9n) {
-      border-right: none !important;
-    }
-
-    .sudoku-cell-container:nth-child(n + 19):nth-child(-n + 27):not(:nth-child(n + 28)),
-    .sudoku-cell-container:nth-child(n + 46):nth-child(-n + 54):not(:nth-child(n + 55)) {
-      border-bottom: 2px solid hsl(var(--grid-border-thick)) !important;
-    }
-
-    /* Input styling for mobile */
+    /* Input styling for mobile - ensure proper sizing */
     .sudoku-cell-input {
-      font-size: 1.125rem !important;
+      font-size: clamp(0.875rem, 3vw, 1.125rem) !important; /* Responsive font size */
       font-weight: 600 !important;
-      min-height: 44px !important;
-      line-height: 44px !important;
+      width: 100% !important;
+      height: 100% !important;
+      line-height: 1 !important;
     }
 
     /* Instructions spacing - minimal for mobile */
