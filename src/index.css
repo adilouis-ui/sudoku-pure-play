@@ -424,12 +424,16 @@
       padding: 1.5rem 1rem !important;
       margin-top: 0 !important;
       box-sizing: border-box !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
     }
 
-    /* Grid container with proper spacing */
+    /* Grid container with proper responsive sizing */
     .sudoku-grid {
-      max-width: calc(100vw - 3rem) !important;
       width: 100% !important;
+      max-width: min(400px, calc(100vw - 2rem)) !important;
+      aspect-ratio: 1 / 1 !important;
       margin: 0 auto !important;
       border: 3px solid hsl(var(--grid-border-thick)) !important;
       box-shadow: 0 4px 12px -2px hsl(var(--shadow-medium) / 0.15) !important;
