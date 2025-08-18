@@ -2,41 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Minimalist Sudoku Design System */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Base colors - soft, calming palette */
+    --background: 0 0% 98%;
+    --foreground: 220 15% 20%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Sudoku grid colors */
+    --grid-border: 220 10% 85%;
+    --grid-border-thick: 220 15% 65%;
+    --cell-background: 0 0% 100%;
+    --cell-hover: 220 30% 96%;
+    --cell-active: 220 40% 92%;
+    --cell-highlight: 220 50% 88%;
+    --cell-number: 220 15% 25%;
+    --cell-given: 220 20% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    /* UI colors */
+    --primary: 220 50% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 220 50% 45%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Difficulty button colors */
+    --warm-up: 45 85% 65%;
+    --warm-up-hover: 45 85% 55%;
+    --challenge: 25 85% 60%;
+    --challenge-hover: 25 85% 50%;
+    --brain-fire: 5 85% 60%;
+    --brain-fire-hover: 5 85% 50%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Success celebration */
+    --success: 120 50% 60%;
+    --success-bg: 120 50% 95%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Shadows and effects */
+    --shadow-soft: 220 15% 80%;
+    --shadow-medium: 220 15% 70%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +105,116 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+@layer components {
+  /* Sudoku Grid Styles */
+  .sudoku-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 1px;
+    background-color: hsl(var(--grid-border-thick));
+    border: 2px solid hsl(var(--grid-border-thick));
+    border-radius: var(--radius);
+    box-shadow: 0 10px 30px -10px hsl(var(--shadow-medium) / 0.3);
+  }
+
+  .sudoku-cell {
+    aspect-ratio: 1;
+    background: hsl(var(--cell-background));
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: hsl(var(--cell-number));
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+  }
+
+  .sudoku-cell:hover {
+    background: hsl(var(--cell-hover));
+  }
+
+  .sudoku-cell.active {
+    background: hsl(var(--cell-active));
+    box-shadow: inset 0 0 0 2px hsl(var(--primary));
+  }
+
+  .sudoku-cell.highlighted {
+    background: hsl(var(--cell-highlight));
+  }
+
+  .sudoku-cell.given {
+    color: hsl(var(--cell-given));
+    font-weight: 700;
+  }
+
+  /* Thick borders for 3x3 blocks */
+  .sudoku-cell:nth-child(3n) {
+    border-right: 2px solid hsl(var(--grid-border-thick));
+  }
+
+  .sudoku-cell:nth-child(n + 19):nth-child(-n + 27),
+  .sudoku-cell:nth-child(n + 46):nth-child(-n + 54) {
+    border-bottom: 2px solid hsl(var(--grid-border-thick));
+  }
+
+  /* Difficulty Buttons */
+  .difficulty-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px -4px hsl(var(--shadow-soft) / 0.4);
+  }
+
+  .difficulty-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px -4px hsl(var(--shadow-medium) / 0.4);
+  }
+
+  .difficulty-warm-up {
+    background: hsl(var(--warm-up));
+    color: white;
+  }
+
+  .difficulty-warm-up:hover {
+    background: hsl(var(--warm-up-hover));
+  }
+
+  .difficulty-challenge {
+    background: hsl(var(--challenge));
+    color: white;
+  }
+
+  .difficulty-challenge:hover {
+    background: hsl(var(--challenge-hover));
+  }
+
+  .difficulty-brain-fire {
+    background: hsl(var(--brain-fire));
+    color: white;
+  }
+
+  .difficulty-brain-fire:hover {
+    background: hsl(var(--brain-fire-hover));
+  }
+
+  /* Success overlay */
+  .success-overlay {
+    background: hsl(var(--success-bg) / 0.95);
+    backdrop-filter: blur(4px);
+  }
+
+  .success-message {
+    color: hsl(var(--success));
+    text-shadow: 0 2px 4px hsl(var(--shadow-soft) / 0.3);
   }
 }
