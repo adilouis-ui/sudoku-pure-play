@@ -100,8 +100,8 @@
 }
 
 @layer base {
-  * {
-    @apply border-border;
+  *, *::before, *::after {
+    box-sizing: border-box;
   }
 
   body {
@@ -429,15 +429,14 @@
       align-items: center !important;
     }
 
-    /* Grid container with proper responsive sizing */
+    /* Grid container with bulletproof responsive sizing */
     .sudoku-grid {
       width: 100% !important;
-      max-width: min(400px, calc(100vw - 2rem)) !important;
+      max-width: 100% !important;
       aspect-ratio: 1 / 1 !important;
       margin: 0 auto !important;
       border: 3px solid hsl(var(--grid-border-thick)) !important;
       box-shadow: 0 4px 12px -2px hsl(var(--shadow-medium) / 0.15) !important;
-      box-sizing: border-box !important;
     }
 
     /* Enhanced grid readability with proper border hierarchy */
