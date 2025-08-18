@@ -576,13 +576,13 @@
       overflow: hidden !important;
     }
 
-    /* Sudoku grid - conservative sizing for all laptop screens */
+    /* Sudoku grid - very conservative sizing for small laptop screens */
     .sudoku-grid {
-      /* Much more conservative sizing to work on small laptop screens */
-      max-height: calc(100vh - 120px - 2rem - 2rem) !important; /* More buffer for navbar + gap + margins */
-      max-width: calc(100vh - 120px - 2rem - 2rem) !important;
-      width: min(350px, calc(100vh - 120px - 2rem - 2rem)) !important;
-      height: min(350px, calc(100vh - 120px - 2rem - 2rem)) !important;
+      /* Much more aggressive buffer to ensure borders are never cropped */
+      max-height: calc(100vh - 180px) !important; /* Large buffer for all UI elements */
+      max-width: calc(100vh - 180px) !important;
+      width: min(320px, calc(100vh - 180px)) !important;
+      height: min(320px, calc(100vh - 180px)) !important;
       aspect-ratio: 1 / 1 !important;
       margin: 0 !important;
     }
