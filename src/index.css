@@ -116,14 +116,20 @@
     @apply bg-background text-foreground font-sans;
   }
 
-  /* Main page wrapper - mobile-first natural layout with safe padding */
+  /* MOBILE-FIRST BASE STYLES - Minimal spacing for mobile */
   .min-h-screen {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    padding-left: 20px;
-    padding-right: 20px;
+    gap: 0.5rem; /* Small mobile-first gap */
+    padding: 0 20px;
     box-sizing: border-box;
+  }
+
+  /* Reset margins on game containers */
+  .sudoku-board-container {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }
 
@@ -480,14 +486,15 @@
       padding: 0.75rem 20px !important;
     }
     
-    /* Game content container - force center with padding */
+    /* Game content container - minimal mobile padding */
     .min-h-screen .flex-1 {
-      padding: 1rem 0 !important;
+      padding: 0.5rem 0 !important;
       margin: 0 !important;
       width: 100% !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
+      flex: 1 !important;
     }
 
     /* SUDOKU GRID - Enhanced mobile styling (base styles already handle sizing) */
@@ -525,9 +532,9 @@
       line-height: 44px !important;
     }
 
-    /* Instructions spacing */
+    /* Instructions spacing - minimal for mobile */
     .min-h-screen .text-center.text-sm {
-      margin-top: 1.5rem !important;
+      margin-top: 0.5rem !important;
       padding: 0 1rem !important;
       opacity: 0.7 !important;
     }
@@ -543,14 +550,14 @@
       padding: 0 !important;
     }
 
-    /* Main page wrapper - full height flex container */
+    /* DESKTOP OVERRIDES - Larger spacing only for desktop */
     .min-h-screen {
       height: 100vh !important;
       min-height: 100vh !important;
       display: flex !important;
       flex-direction: column !important;
       overflow: hidden !important;
-      gap: 2rem !important; /* Creates breathing room between navbar and game board */
+      gap: 2rem !important; /* Desktop spacing - larger gap */
     }
 
     /* Game view container - full height management */
