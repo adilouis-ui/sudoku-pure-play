@@ -236,71 +236,166 @@
     text-shadow: 0 2px 4px hsl(var(--shadow-soft) / 0.3);
   }
 
-  /* Mobile navbar optimizations */
+  /* Mobile Design Polish - Professional UI */
   @media (max-width: 768px) {
-    /* Compact navbar for mobile */
-    nav {
-      height: 64px !important;
-      padding: 0.75rem 1rem !important;
+    /* START SCREEN IMPROVEMENTS */
+    
+    /* Better vertical rhythm for start screen */
+    .min-h-screen .flex.flex-col.items-center.justify-center {
+      gap: 2rem !important;
+      padding: 2rem 1.5rem !important;
+    }
+    
+    /* Start screen title improvements */
+    .min-h-screen h1 {
+      font-size: 2.5rem !important;
+      font-weight: 800 !important;
+      margin-bottom: 0.5rem !important;
+    }
+    
+    /* Start screen subtitle */
+    .min-h-screen p {
+      font-size: 1.125rem !important;
+      opacity: 0.8 !important;
+      margin-bottom: 1rem !important;
+    }
+    
+    /* Refined difficulty buttons for start screen */
+    .difficulty-btn {
+      padding: 1rem 2rem !important;
+      font-size: 1rem !important;
+      font-weight: 600 !important;
+      border-radius: 12px !important;
+      box-shadow: none !important;
+      min-width: 140px !important;
+      transition: all 0.2s ease !important;
+    }
+    
+    .difficulty-btn:hover {
+      transform: none !important;
+      box-shadow: none !important;
+      opacity: 0.9 !important;
     }
 
-    /* Ensure navbar content is properly centered */
+    /* GAME SCREEN NAVIGATION BAR - CRITICAL FIXES */
+    
+    /* Professional navbar with proper spacing and alignment */
+    nav {
+      height: 60px !important;
+      padding: 0 1rem !important;
+      border-bottom: 1px solid hsl(var(--grid-border)) !important;
+      box-shadow: 0 1px 3px 0 hsl(var(--shadow-soft) / 0.1) !important;
+      background: hsl(var(--background)) !important;
+    }
+
+    /* Perfect flexbox alignment for navbar content */
     nav > div {
       display: flex !important;
       align-items: center !important;
       justify-content: space-between !important;
       height: 100% !important;
+      width: 100% !important;
     }
 
-    /* Reduce title font size on mobile */
+    /* Navbar title styling */
     nav h1 {
-      font-size: 1.25rem !important;
-      line-height: 1.2 !important;
+      font-size: 1.375rem !important;
+      font-weight: 700 !important;
+      line-height: 1 !important;
+      color: hsl(var(--foreground)) !important;
     }
 
-    /* Reduce difficulty button spacing and font size */
-    .difficulty-btn {
-      padding: 0.5rem 0.75rem !important;
-      font-size: 0.875rem !important;
-      margin: 0 0.25rem !important;
-    }
-
-    /* Force horizontal layout for difficulty buttons on mobile */
+    /* SEGMENTED CONTROL STYLE for difficulty buttons in navbar */
     nav .flex {
+      display: flex !important;
       flex-direction: row !important;
-      gap: 0.5rem !important;
+      gap: 0 !important;
+      background: hsl(var(--grid-border)) !important;
+      border-radius: 8px !important;
+      padding: 2px !important;
+      box-shadow: inset 0 1px 2px hsl(var(--shadow-soft) / 0.1) !important;
     }
 
-    /* Ensure button container is centered */
+    /* Segmented control buttons */
+    nav .difficulty-btn {
+      padding: 0.5rem 0.75rem !important;
+      font-size: 0.8rem !important;
+      font-weight: 500 !important;
+      border-radius: 6px !important;
+      background: transparent !important;
+      color: hsl(var(--foreground) / 0.7) !important;
+      box-shadow: none !important;
+      border: none !important;
+      min-width: auto !important;
+      margin: 0 !important;
+      transition: all 0.15s ease !important;
+    }
+
+    /* Active state for segmented control */
+    nav .difficulty-btn:hover,
+    nav .difficulty-btn:focus {
+      background: hsl(var(--cell-background)) !important;
+      color: hsl(var(--foreground)) !important;
+      box-shadow: 0 1px 2px hsl(var(--shadow-soft) / 0.2) !important;
+      transform: none !important;
+    }
+
+    /* Center container for navbar buttons */
     nav .flex-1 {
       display: flex !important;
       justify-content: center !important;
       align-items: center !important;
     }
 
-    /* Mobile-specific Sudoku grid optimizations */
-    .sudoku-grid {
-      max-width: calc(100vw - 2rem);
-      margin: 0 auto;
-    }
-
-    .sudoku-cell-input {
-      font-size: 1.1rem !important;
-      min-height: 44px; /* Better touch target */
-    }
-
-    .sudoku-cell-container {
-      min-height: 44px; /* Better touch target */
-    }
-
-    /* Reduce grid padding on mobile */
-    .sudoku-grid {
-      gap: 0.5px;
-    }
-
-    /* Optimize spacing for mobile game view */
+    /* GAME BOARD LAYOUT IMPROVEMENTS */
+    
+    /* Add breathing room around the game board */
     .min-h-screen .flex-1 {
-      padding: 1rem !important;
+      padding: 1.5rem 1rem !important;
+      margin-top: 0 !important;
+    }
+
+    /* Grid container with proper spacing */
+    .sudoku-grid {
+      max-width: calc(100vw - 2rem) !important;
+      margin: 0 auto !important;
+      border: 3px solid hsl(var(--grid-border-thick)) !important;
+      box-shadow: 0 4px 12px -2px hsl(var(--shadow-medium) / 0.15) !important;
+    }
+
+    /* Enhanced grid readability with proper border hierarchy */
+    .sudoku-cell-container {
+      min-height: 44px !important;
+      border: 0.5px solid hsl(var(--grid-border)) !important;
+    }
+
+    /* Thicker borders for 3x3 block separation */
+    .sudoku-cell-container:nth-child(3n):not(:nth-child(9n)) {
+      border-right: 2px solid hsl(var(--grid-border-thick)) !important;
+    }
+
+    .sudoku-cell-container:nth-child(9n) {
+      border-right: none !important;
+    }
+
+    .sudoku-cell-container:nth-child(n + 19):nth-child(-n + 27):not(:nth-child(n + 28)),
+    .sudoku-cell-container:nth-child(n + 46):nth-child(-n + 54):not(:nth-child(n + 55)) {
+      border-bottom: 2px solid hsl(var(--grid-border-thick)) !important;
+    }
+
+    /* Input styling for mobile */
+    .sudoku-cell-input {
+      font-size: 1.125rem !important;
+      font-weight: 600 !important;
+      min-height: 44px !important;
+      line-height: 44px !important;
+    }
+
+    /* Instructions spacing */
+    .min-h-screen .text-center.text-sm {
+      margin-top: 1.5rem !important;
+      padding: 0 1rem !important;
+      opacity: 0.7 !important;
     }
   }
 }
