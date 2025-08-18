@@ -116,27 +116,43 @@
     @apply bg-background text-foreground font-sans;
   }
 
-  /* Main page wrapper - mobile-first natural layout */
+  /* Main page wrapper - mobile-first natural layout with safe padding */
   .min-h-screen {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
+    box-sizing: border-box;
   }
 }
 
 @layer components {
-  /* Sudoku Grid Styles */
+  /* Sudoku Grid Styles - Bulletproof viewport-based sizing */
   .sudoku-grid {
+    /* CRITICAL: Force exact viewport-based dimensions */
+    width: calc(100vw - 40px);
+    height: calc(100vw - 40px);
+    max-width: calc(100vw - 40px);
+    max-height: calc(100vw - 40px);
+    
+    /* Center the grid within its container */
+    margin-left: auto;
+    margin-right: auto;
+    
+    /* Grid layout with perfect 9x9 structure */
     display: grid;
     grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(9, 1fr);
     gap: 1px;
+    
+    /* Visual styling */
     background-color: hsl(var(--grid-border-thick));
     border: 2px solid hsl(var(--grid-border-thick));
     border-radius: var(--radius);
     box-shadow: 0 10px 30px -10px hsl(var(--shadow-medium) / 0.3);
-    width: 100%;
-    max-width: 400px;
     overflow: hidden;
+    box-sizing: border-box;
   }
 
   .sudoku-cell-container {
@@ -434,12 +450,10 @@
 
     /* GAME BOARD LAYOUT IMPROVEMENTS */
     
-    /* CRITICAL MOBILE FIX - Force layout with highest specificity */
+    /* CRITICAL MOBILE FIX - Remove conflicting overrides */
     
-    /* Force main container to respect viewport with padding */
+    /* Main container already has correct padding from base styles */
     .min-h-screen.bg-background {
-      padding: 0 20px !important;
-      box-sizing: border-box !important;
       width: 100vw !important;
       max-width: 100vw !important;
       overflow-x: hidden !important;
@@ -476,16 +490,10 @@
       justify-content: center !important;
     }
 
-    /* SUDOKU GRID - BULLETPROOF MOBILE SIZING */
+    /* SUDOKU GRID - Enhanced mobile styling (base styles already handle sizing) */
     .sudoku-grid {
-      width: calc(100vw - 40px) !important;
-      max-width: calc(100vw - 40px) !important;
-      height: calc(100vw - 40px) !important;
-      max-height: calc(100vw - 40px) !important;
-      margin: 0 auto !important;
       border: 3px solid hsl(var(--grid-border-thick)) !important;
       box-shadow: 0 4px 12px -2px hsl(var(--shadow-medium) / 0.15) !important;
-      box-sizing: border-box !important;
     }
 
     /* Enhanced grid readability with proper border hierarchy */
@@ -570,8 +578,8 @@
     /* Sudoku grid - optimized sizing for desktop */
     .sudoku-grid {
       width: 400px !important;
-      max-width: 400px !important;
       height: 400px !important;
+      max-width: 400px !important;
       max-height: 400px !important;
       margin: 0 !important;
     }
