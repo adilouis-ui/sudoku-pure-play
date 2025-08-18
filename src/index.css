@@ -356,6 +356,13 @@
 
   /* Mobile Design Polish - Professional UI */
   @media (max-width: 768px) {
+    /* Prevent scrolling on mobile */
+    html, body {
+      overflow: hidden !important;
+      height: 100vh !important;
+      position: fixed !important;
+      width: 100% !important;
+    }
     /* START SCREEN IMPROVEMENTS */
     
     /* Better vertical rhythm for start screen */
