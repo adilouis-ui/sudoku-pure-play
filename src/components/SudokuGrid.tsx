@@ -29,6 +29,17 @@ export const SudokuGrid: React.FC<SudokuGridProps> = ({
     }
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, row: number, col: number) => {
+    if (givenCells[row][col]) return;
+
+    const value = e.target.value;
+    if (value === '' || value === '0') {
+      onCellChange(row, col, null);
+    } else if (value >= '1' && value <= '9') {
+      onCellChange(row, col, parseInt(value));
+    }
+  };
+
   return (
     <div className="sudoku-grid max-w-lg mx-auto">
       {grid.map((row, rowIndex) =>
@@ -39,20 +50,30 @@ export const SudokuGrid: React.FC<SudokuGridProps> = ({
           const isGiven = givenCells[rowIndex][colIndex];
 
           return (
-            <button
+            <div
               key={cellKey}
               className={`
-                sudoku-cell
+                sudoku-cell-container
                 ${isActive ? 'active' : ''}
                 ${isHighlighted ? 'highlighted' : ''}
                 ${isGiven ? 'given' : ''}
               `}
               onClick={() => onCellClick(rowIndex, colIndex)}
-              onKeyDown={(e) => handleKeyDown(e, rowIndex, colIndex)}
-              tabIndex={0}
             >
-              {cell || ''}
-            </button>
+              <input
+                type="text"
+                inputMode="numeric"
+                pattern="[1-9]*"
+                maxLength={1}
+                value={cell || ''}
+                onChange={(e) => handleInputChange(e, rowIndex, colIndex)}
+                onKeyDown={(e) => handleKeyDown(e, rowIndex, colIndex)}
+                onFocus={() => onCellClick(rowIndex, colIndex)}
+                readOnly={isGiven}
+                className="sudoku-cell-input"
+                tabIndex={0}
+              />
+            </div>
           );
         })
       )}
