@@ -247,6 +247,12 @@
       margin: 0 0.25rem !important;
     }
 
+    /* Force horizontal layout for difficulty buttons on mobile */
+    nav .flex {
+      flex-direction: row !important;
+      gap: 0.5rem !important;
+    }
+
     /* Ensure button container is centered */
     nav .flex-1 {
       display: flex !important;
