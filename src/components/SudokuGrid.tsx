@@ -41,7 +41,24 @@ export const SudokuGrid: React.FC<SudokuGridProps> = ({
   };
 
   return (
-    <div className="sudoku-grid">
+    <div 
+      className="sudoku-grid"
+      ref={(el) => {
+        if (el) {
+          console.log('Grid element dimensions:', {
+            width: el.offsetWidth,
+            height: el.offsetHeight,
+            clientWidth: el.clientWidth,
+            clientHeight: el.clientHeight,
+            scrollWidth: el.scrollWidth,
+            scrollHeight: el.scrollHeight,
+            computedStyle: window.getComputedStyle(el).width,
+            viewportWidth: window.innerWidth,
+            calculatedWidth: window.innerWidth - 40
+          });
+        }
+      }}
+    >
       {grid.map((row, rowIndex) =>
         row.map((cell, colIndex) => {
           const cellKey = `${rowIndex}-${colIndex}`;
