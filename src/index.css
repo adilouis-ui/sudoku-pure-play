@@ -225,6 +225,15 @@
     background: hsl(var(--cell-background) / 0.8);
   }
 
+  /* Ensure highlighted given cells show the highlight background */
+  .sudoku-cell-container.given.highlighted {
+    background: hsl(var(--cell-highlight)) !important;
+  }
+
+  .sudoku-cell-container.given.highlighted .sudoku-cell-input {
+    background: transparent;
+  }
+
   /* User-entered numbers - distinct blue color for clear differentiation */
   .sudoku-cell-container:not(.given) .sudoku-cell-input:not(:placeholder-shown) {
     color: hsl(220 70% 50%);
