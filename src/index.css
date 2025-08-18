@@ -519,7 +519,6 @@
     /* Enhanced grid readability with proper border hierarchy */
     .sudoku-cell-container {
       min-height: 0 !important; /* Remove fixed height constraints */
-      border: 0.5px solid hsl(var(--grid-border)) !important;
       box-sizing: border-box !important;
       aspect-ratio: 1 !important; /* Ensure square cells */
     }
