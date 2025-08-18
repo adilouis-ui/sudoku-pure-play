@@ -119,6 +119,8 @@
     border: 2px solid hsl(var(--grid-border-thick));
     border-radius: var(--radius);
     box-shadow: 0 10px 30px -10px hsl(var(--shadow-medium) / 0.3);
+    width: 100%;
+    max-width: 400px;
   }
 
   .sudoku-cell-container {
@@ -148,6 +150,8 @@
     transition: all 0.2s ease;
     padding: 0;
     margin: 0;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
   }
 
   .sudoku-cell-container:hover {
@@ -272,6 +276,31 @@
       display: flex !important;
       justify-content: center !important;
       align-items: center !important;
+    }
+
+    /* Mobile-specific Sudoku grid optimizations */
+    .sudoku-grid {
+      max-width: calc(100vw - 2rem);
+      margin: 0 auto;
+    }
+
+    .sudoku-cell-input {
+      font-size: 1.1rem !important;
+      min-height: 44px; /* Better touch target */
+    }
+
+    .sudoku-cell-container {
+      min-height: 44px; /* Better touch target */
+    }
+
+    /* Reduce grid padding on mobile */
+    .sudoku-grid {
+      gap: 0.5px;
+    }
+
+    /* Optimize spacing for mobile game view */
+    .min-h-screen .flex-1 {
+      padding: 1rem !important;
     }
   }
 }
