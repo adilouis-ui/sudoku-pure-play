@@ -41,7 +41,7 @@ export const SudokuGrid: React.FC<SudokuGridProps> = ({
   };
 
   return (
-    <div className="sudoku-grid max-w-lg mx-auto">
+    <div className="sudoku-grid">
       {grid.map((row, rowIndex) =>
         row.map((cell, colIndex) => {
           const cellKey = `${rowIndex}-${colIndex}`;
