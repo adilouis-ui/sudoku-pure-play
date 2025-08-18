@@ -121,6 +121,7 @@
     box-shadow: 0 10px 30px -10px hsl(var(--shadow-medium) / 0.3);
     width: 100%;
     max-width: 400px;
+    overflow: hidden;
   }
 
   .sudoku-cell-container {
