@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSudoku, Difficulty } from '@/hooks/useSudoku';
 import { SudokuGrid } from './SudokuGrid';
 import { DifficultyButtons } from './DifficultyButtons';
 import { ConfettiAnimation } from './ConfettiAnimation';
 
 export const SudokuGame: React.FC = () => {
+  const [currentDifficulty, setCurrentDifficulty] = useState<Difficulty>('challenge');
+  
   const {
     grid,
     givenCells,
@@ -21,6 +23,7 @@ export const SudokuGame: React.FC = () => {
     : new Set<string>();
 
   const handleDifficultySelect = (difficulty: Difficulty) => {
+    setCurrentDifficulty(difficulty);
     generateNewGame(difficulty);
   };
 
@@ -47,7 +50,11 @@ export const SudokuGame: React.FC = () => {
               Fill each row, column, and 3×3 box with digits 1-9
             </p>
           </div>
-          <DifficultyButtons onDifficultySelect={handleDifficultySelect} />
+          <DifficultyButtons 
+            onDifficultySelect={handleDifficultySelect} 
+            currentDifficulty={currentDifficulty}
+            variant="standalone"
+          />
         </div>
       ) : (
         // Game view with navigation bar
@@ -59,7 +66,11 @@ export const SudokuGame: React.FC = () => {
                 Sudoku
               </h1>
               <div className="flex-1 flex justify-center">
-                <DifficultyButtons onDifficultySelect={handleDifficultySelect} />
+                <DifficultyButtons 
+                  onDifficultySelect={handleDifficultySelect}
+                  currentDifficulty={currentDifficulty}
+                  variant="segmented"
+                />
               </div>
               <div className="w-24"></div> {/* Spacer for centering */}
             </div>
@@ -87,7 +98,11 @@ export const SudokuGame: React.FC = () => {
                     <p className="text-lg text-foreground/80 mb-6">
                       Ready for another challenge?
                     </p>
-                    <DifficultyButtons onDifficultySelect={handleDifficultySelect} />
+                    <DifficultyButtons 
+                      onDifficultySelect={handleDifficultySelect}
+                      currentDifficulty={currentDifficulty}
+                      variant="standalone"
+                    />
                   </div>
                 </div>
               )}

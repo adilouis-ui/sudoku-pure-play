@@ -126,7 +126,7 @@
   .sudoku-cell-container {
     aspect-ratio: 1;
     background: hsl(var(--cell-background));
-    border: none;
+    border: 1px solid hsl(var(--grid-border));
     display: flex;
     align-items: center;
     justify-content: center;
@@ -152,6 +152,16 @@
     margin: 0;
     -webkit-appearance: none;
     -moz-appearance: textfield;
+  }
+
+  /* CRITICAL UX: Active cell highlighting */
+  .sudoku-cell-input:focus {
+    background: hsl(var(--cell-active)) !important;
+  }
+
+  .sudoku-cell-container:has(.sudoku-cell-input:focus) {
+    background: hsl(var(--cell-active)) !important;
+    box-shadow: inset 0 0 0 2px hsl(var(--primary)) !important;
   }
 
   .sudoku-cell-container:hover {
@@ -182,46 +192,92 @@
     border-bottom: 2px solid hsl(var(--grid-border-thick));
   }
 
-  /* Difficulty Buttons */
+  /* Segmented Control for Difficulty Buttons */
+  .difficulty-buttons-container {
+    display: inline-flex;
+    background: hsl(var(--cell-hover));
+    border-radius: 10px;
+    padding: 3px;
+    gap: 0;
+  }
+
   .difficulty-btn {
-    padding: 0.75rem 1.5rem;
-    border-radius: var(--radius);
-    font-weight: 600;
+    padding: 0.625rem 1.25rem;
+    border-radius: 7px;
+    font-weight: 500;
+    font-size: 0.875rem;
     transition: all 0.2s ease;
     border: none;
     cursor: pointer;
-    box-shadow: 0 4px 12px -4px hsl(var(--shadow-soft) / 0.4);
+    background: transparent;
+    color: hsl(var(--foreground) / 0.7);
+    margin: 0;
+    position: relative;
   }
 
   .difficulty-btn:hover {
+    background: hsl(var(--cell-background));
+    color: hsl(var(--foreground));
+    box-shadow: 0 1px 3px hsl(var(--shadow-soft) / 0.2);
+  }
+
+  /* Active/Selected state for difficulty buttons */
+  .difficulty-btn.active,
+  .difficulty-warm-up.active {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    box-shadow: 0 1px 3px hsl(var(--shadow-soft) / 0.3);
+  }
+
+  .difficulty-challenge.active {
+    background: hsl(var(--challenge));
+    color: white;
+    box-shadow: 0 1px 3px hsl(var(--shadow-soft) / 0.3);
+  }
+
+  .difficulty-brain-fire.active {
+    background: hsl(var(--brain-fire));
+    color: white;
+    box-shadow: 0 1px 3px hsl(var(--shadow-soft) / 0.3);
+  }
+
+  /* Legacy support for standalone buttons (start screen) */
+  .standalone .difficulty-btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    box-shadow: 0 4px 12px -4px hsl(var(--shadow-soft) / 0.4);
+  }
+
+  .standalone .difficulty-btn:hover {
     transform: translateY(-1px);
     box-shadow: 0 6px 20px -4px hsl(var(--shadow-medium) / 0.4);
   }
 
-  .difficulty-warm-up {
+  .standalone .difficulty-warm-up {
     background: hsl(var(--warm-up));
     color: white;
   }
 
-  .difficulty-warm-up:hover {
+  .standalone .difficulty-warm-up:hover {
     background: hsl(var(--warm-up-hover));
   }
 
-  .difficulty-challenge {
+  .standalone .difficulty-challenge {
     background: hsl(var(--challenge));
     color: white;
   }
 
-  .difficulty-challenge:hover {
+  .standalone .difficulty-challenge:hover {
     background: hsl(var(--challenge-hover));
   }
 
-  .difficulty-brain-fire {
+  .standalone .difficulty-brain-fire {
     background: hsl(var(--brain-fire));
     color: white;
   }
 
-  .difficulty-brain-fire:hover {
+  .standalone .difficulty-brain-fire:hover {
     background: hsl(var(--brain-fire-hover));
   }
 
