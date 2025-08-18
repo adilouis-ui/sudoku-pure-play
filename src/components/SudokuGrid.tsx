@@ -45,16 +45,20 @@ export const SudokuGrid: React.FC<SudokuGridProps> = ({
       className="sudoku-grid"
       ref={(el) => {
         if (el) {
-          console.log('Grid element dimensions:', {
-            width: el.offsetWidth,
-            height: el.offsetHeight,
-            clientWidth: el.clientWidth,
-            clientHeight: el.clientHeight,
-            scrollWidth: el.scrollWidth,
-            scrollHeight: el.scrollHeight,
-            computedStyle: window.getComputedStyle(el).width,
+          const rect = el.getBoundingClientRect();
+          const parentRect = el.parentElement?.getBoundingClientRect();
+          console.log('Desktop QA - Grid dimensions:', {
+            gridWidth: rect.width,
+            gridHeight: rect.height,
+            parentWidth: parentRect?.width,
+            parentHeight: parentRect?.height,
             viewportWidth: window.innerWidth,
-            calculatedWidth: window.innerWidth - 40
+            viewportHeight: window.innerHeight,
+            calculatedMaxSize: window.innerHeight - 80 - 32 - 32, // 80px navbar + 2rem gap + 2rem buffer
+            isDesktop: window.innerWidth >= 769,
+            gridTop: rect.top,
+            gridBottom: rect.bottom,
+            isClipped: rect.bottom > window.innerHeight
           });
         }
       }}
