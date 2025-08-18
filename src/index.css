@@ -543,6 +543,11 @@
 
   /* DESKTOP LAYOUT OPTIMIZATION - Eliminate vertical scrolling */
   @media (min-width: 769px) {
+    /* Desktop-specific pre-filled number styling */
+    .sudoku-cell-container.given .sudoku-cell-input {
+      font-weight: 500;
+    }
+
     /* Full-height page container */
     html, body, #root {
       height: 100vh !important;
