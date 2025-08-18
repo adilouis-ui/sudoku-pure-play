@@ -104,8 +104,23 @@
     box-sizing: border-box;
   }
 
+  /* MOBILE-FIRST BASE STYLES - Natural flow, no forced heights */
+  html, body, #root {
+    height: auto;
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+  }
+
   body {
     @apply bg-background text-foreground font-sans;
+  }
+
+  /* Main page wrapper - mobile-first natural layout */
+  .min-h-screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -430,11 +445,19 @@
       overflow-x: hidden !important;
     }
     
-    /* Remove conflicting padding from body/root */
-    body, #root {
+    /* RESET DESKTOP OVERRIDES - Critical for mobile */
+    html, body, #root {
+      height: auto !important;
+      overflow: visible !important;
       padding: 0 !important;
       margin: 0 !important;
-      overflow-x: hidden !important;
+    }
+
+    /* Mobile-specific main container reset */
+    .min-h-screen {
+      height: auto !important;
+      min-height: 100vh !important;
+      overflow: visible !important;
     }
     
     /* Navbar specific mobile styling */
