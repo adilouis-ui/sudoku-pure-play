@@ -576,12 +576,14 @@
       overflow: hidden !important;
     }
 
-    /* Sudoku grid - optimized sizing for desktop */
+    /* Sudoku grid - dynamic sizing for desktop to prevent clipping */
     .sudoku-grid {
-      width: 400px !important;
-      height: 400px !important;
-      max-width: 400px !important;
-      max-height: 400px !important;
+      /* Dynamic sizing based on available viewport height */
+      max-height: calc(100vh - 80px - 2rem - 2rem) !important; /* 100vh - navbar - gap - buffer */
+      max-width: calc(100vh - 80px - 2rem - 2rem) !important;
+      width: min(400px, calc(100vh - 80px - 2rem - 2rem)) !important;
+      height: min(400px, calc(100vh - 80px - 2rem - 2rem)) !important;
+      aspect-ratio: 1 / 1 !important;
       margin: 0 !important;
     }
 
