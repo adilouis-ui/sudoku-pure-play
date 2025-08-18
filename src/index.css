@@ -419,20 +419,30 @@
 
     /* GAME BOARD LAYOUT IMPROVEMENTS */
     
-    /* Add site-wide horizontal padding for proper breathing room */
-    body, #root {
-      padding-left: 16px !important;
-      padding-right: 16px !important;
+    /* Create main flex container for entire page with consistent spacing */
+    .min-h-screen {
+      display: flex !important;
+      flex-direction: column !important;
+      padding: 0 16px !important;
+      box-sizing: border-box !important;
+      gap: 1rem !important; /* Consistent spacing between navbar and content */
     }
     
-    /* Reduce vertical spacing to fit content without scrolling */
+    /* Remove default body/root padding since we're handling it at page level */
+    body, #root {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+    
+    /* Game content area - no additional margins needed due to gap above */
     .min-h-screen .flex-1 {
-      padding: 1rem 0 !important;
-      margin-top: 0 !important;
-      box-sizing: border-box !important;
       display: flex !important;
       flex-direction: column !important;
       align-items: center !important;
+      justify-content: center !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      box-sizing: border-box !important;
     }
 
     /* Grid container with bulletproof responsive sizing */
