@@ -419,40 +419,50 @@
 
     /* GAME BOARD LAYOUT IMPROVEMENTS */
     
-    /* Create main flex container for entire page with consistent spacing */
-    .min-h-screen {
-      display: flex !important;
-      flex-direction: column !important;
-      padding: 0 16px !important;
+    /* CRITICAL MOBILE FIX - Force layout with highest specificity */
+    
+    /* Force main container to respect viewport with padding */
+    .min-h-screen.bg-background {
+      padding: 0 20px !important;
       box-sizing: border-box !important;
-      gap: 1rem !important; /* Consistent spacing between navbar and content */
+      width: 100vw !important;
+      max-width: 100vw !important;
+      overflow-x: hidden !important;
     }
     
-    /* Remove default body/root padding since we're handling it at page level */
+    /* Remove conflicting padding from body/root */
     body, #root {
-      padding-left: 0 !important;
-      padding-right: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      overflow-x: hidden !important;
     }
     
-    /* Game content area - no additional margins needed due to gap above */
+    /* Navbar specific mobile styling */
+    .min-h-screen.bg-background nav {
+      margin: 0 -20px !important;
+      padding: 0.75rem 20px !important;
+    }
+    
+    /* Game content container - force center with padding */
     .min-h-screen .flex-1 {
+      padding: 1rem 0 !important;
+      margin: 0 !important;
+      width: 100% !important;
       display: flex !important;
-      flex-direction: column !important;
       align-items: center !important;
       justify-content: center !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      box-sizing: border-box !important;
     }
 
-    /* Grid container with bulletproof responsive sizing */
+    /* SUDOKU GRID - BULLETPROOF MOBILE SIZING */
     .sudoku-grid {
-      width: 100% !important;
-      max-width: 100% !important;
-      aspect-ratio: 1 / 1 !important;
+      width: calc(100vw - 40px) !important;
+      max-width: calc(100vw - 40px) !important;
+      height: calc(100vw - 40px) !important;
+      max-height: calc(100vw - 40px) !important;
       margin: 0 auto !important;
       border: 3px solid hsl(var(--grid-border-thick)) !important;
       box-shadow: 0 4px 12px -2px hsl(var(--shadow-medium) / 0.15) !important;
+      box-sizing: border-box !important;
     }
 
     /* Enhanced grid readability with proper border hierarchy */
