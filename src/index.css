@@ -134,6 +134,7 @@
     transition: all 0.2s ease;
     outline: none;
     position: relative;
+    box-sizing: border-box;
   }
 
   .sudoku-cell-input {
@@ -150,17 +151,19 @@
     transition: all 0.2s ease;
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
     -webkit-appearance: none;
     -moz-appearance: textfield;
   }
 
   /* CRITICAL UX: Active cell highlighting */
   .sudoku-cell-input:focus {
-    background: hsl(var(--cell-active)) !important;
+    background: #dbeafe !important;
+    outline: none;
   }
 
   .sudoku-cell-container:has(.sudoku-cell-input:focus) {
-    background: hsl(var(--cell-active)) !important;
+    background: #dbeafe !important;
     box-shadow: inset 0 0 0 2px hsl(var(--primary)) !important;
   }
 
@@ -419,20 +422,24 @@
     .min-h-screen .flex-1 {
       padding: 1.5rem 1rem !important;
       margin-top: 0 !important;
+      box-sizing: border-box !important;
     }
 
     /* Grid container with proper spacing */
     .sudoku-grid {
-      max-width: calc(100vw - 2rem) !important;
+      max-width: calc(100vw - 3rem) !important;
+      width: 100% !important;
       margin: 0 auto !important;
       border: 3px solid hsl(var(--grid-border-thick)) !important;
       box-shadow: 0 4px 12px -2px hsl(var(--shadow-medium) / 0.15) !important;
+      box-sizing: border-box !important;
     }
 
     /* Enhanced grid readability with proper border hierarchy */
     .sudoku-cell-container {
       min-height: 44px !important;
       border: 0.5px solid hsl(var(--grid-border)) !important;
+      box-sizing: border-box !important;
     }
 
     /* Thicker borders for 3x3 block separation */
