@@ -217,4 +217,41 @@
     color: hsl(var(--success));
     text-shadow: 0 2px 4px hsl(var(--shadow-soft) / 0.3);
   }
+
+  /* Mobile navbar optimizations */
+  @media (max-width: 768px) {
+    /* Compact navbar for mobile */
+    nav {
+      height: 64px !important;
+      padding: 0.75rem 1rem !important;
+    }
+
+    /* Ensure navbar content is properly centered */
+    nav > div {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      height: 100% !important;
+    }
+
+    /* Reduce title font size on mobile */
+    nav h1 {
+      font-size: 1.25rem !important;
+      line-height: 1.2 !important;
+    }
+
+    /* Reduce difficulty button spacing and font size */
+    .difficulty-btn {
+      padding: 0.5rem 0.75rem !important;
+      font-size: 0.875rem !important;
+      margin: 0 0.25rem !important;
+    }
+
+    /* Ensure button container is centered */
+    nav .flex-1 {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+  }
 }
