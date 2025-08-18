@@ -246,22 +246,22 @@
       padding: 2rem 1.5rem !important;
     }
     
-    /* Start screen title improvements */
-    .min-h-screen h1 {
+    /* Start screen title improvements - ONLY for start screen */
+    .min-h-screen .flex.flex-col.items-center.justify-center h1 {
       font-size: 2.5rem !important;
       font-weight: 800 !important;
       margin-bottom: 0.5rem !important;
     }
     
     /* Start screen subtitle */
-    .min-h-screen p {
+    .min-h-screen .flex.flex-col.items-center.justify-center p {
       font-size: 1.125rem !important;
       opacity: 0.8 !important;
       margin-bottom: 1rem !important;
     }
     
-    /* Refined difficulty buttons for start screen */
-    .difficulty-btn {
+    /* Refined difficulty buttons for start screen ONLY */
+    .min-h-screen .flex.flex-col.items-center.justify-center .difficulty-btn {
       padding: 1rem 2rem !important;
       font-size: 1rem !important;
       font-weight: 600 !important;
@@ -271,7 +271,7 @@
       transition: all 0.2s ease !important;
     }
     
-    .difficulty-btn:hover {
+    .min-h-screen .flex.flex-col.items-center.justify-center .difficulty-btn:hover {
       transform: none !important;
       box-shadow: none !important;
       opacity: 0.9 !important;
@@ -295,31 +295,47 @@
       justify-content: space-between !important;
       height: 100% !important;
       width: 100% !important;
+      max-width: none !important;
+      margin: 0 !important;
     }
 
-    /* Navbar title styling */
+    /* Navbar title styling - COMPACT for mobile navbar */
     nav h1 {
-      font-size: 1.375rem !important;
-      font-weight: 700 !important;
+      font-size: 1.25rem !important;
+      font-weight: 600 !important;
       line-height: 1 !important;
       color: hsl(var(--foreground)) !important;
+      margin: 0 !important;
+      flex-shrink: 0 !important;
+    }
+
+    /* Remove the spacer div for mobile */
+    nav > div > div:last-child {
+      display: none !important;
     }
 
     /* SEGMENTED CONTROL STYLE for difficulty buttons in navbar */
-    nav .flex {
+    nav .flex-1 {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      margin: 0 1rem !important;
+    }
+
+    nav .flex-1 > div {
       display: flex !important;
       flex-direction: row !important;
       gap: 0 !important;
-      background: hsl(var(--grid-border)) !important;
+      background: hsl(var(--cell-hover)) !important;
       border-radius: 8px !important;
       padding: 2px !important;
-      box-shadow: inset 0 1px 2px hsl(var(--shadow-soft) / 0.1) !important;
+      margin: 0 !important;
     }
 
     /* Segmented control buttons */
     nav .difficulty-btn {
-      padding: 0.5rem 0.75rem !important;
-      font-size: 0.8rem !important;
+      padding: 0.5rem 0.875rem !important;
+      font-size: 0.875rem !important;
       font-weight: 500 !important;
       border-radius: 6px !important;
       background: transparent !important;
@@ -329,6 +345,7 @@
       min-width: auto !important;
       margin: 0 !important;
       transition: all 0.15s ease !important;
+      white-space: nowrap !important;
     }
 
     /* Active state for segmented control */
@@ -338,13 +355,6 @@
       color: hsl(var(--foreground)) !important;
       box-shadow: 0 1px 2px hsl(var(--shadow-soft) / 0.2) !important;
       transform: none !important;
-    }
-
-    /* Center container for navbar buttons */
-    nav .flex-1 {
-      display: flex !important;
-      justify-content: center !important;
-      align-items: center !important;
     }
 
     /* GAME BOARD LAYOUT IMPROVEMENTS */
