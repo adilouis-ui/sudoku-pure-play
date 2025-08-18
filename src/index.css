@@ -501,4 +501,69 @@
       opacity: 0.7 !important;
     }
   }
+
+  /* DESKTOP LAYOUT OPTIMIZATION - Eliminate vertical scrolling */
+  @media (min-width: 769px) {
+    /* Full-height page container */
+    html, body, #root {
+      height: 100vh !important;
+      overflow: hidden !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    /* Main page wrapper - full height flex container */
+    .min-h-screen {
+      height: 100vh !important;
+      min-height: 100vh !important;
+      display: flex !important;
+      flex-direction: column !important;
+      overflow: hidden !important;
+    }
+
+    /* Game view container - full height management */
+    .min-h-screen.bg-background {
+      height: 100vh !important;
+    }
+
+    /* Navigation bar - fixed height at top */
+    .min-h-screen nav {
+      flex-shrink: 0 !important;
+      height: auto !important;
+      padding: 1rem 1.5rem !important;
+    }
+
+    /* Game content area - takes remaining space and centers content */
+    .min-h-screen .flex-1 {
+      flex: 1 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin: 0 !important;
+      padding: 1rem !important;
+      overflow: hidden !important;
+    }
+
+    /* Sudoku grid - optimized sizing for desktop */
+    .sudoku-grid {
+      width: 400px !important;
+      max-width: 400px !important;
+      height: 400px !important;
+      max-height: 400px !important;
+      margin: 0 !important;
+    }
+
+    /* Instructions at bottom - minimal padding */
+    .min-h-screen .pb-8 {
+      padding-bottom: 1rem !important;
+      flex-shrink: 0 !important;
+    }
+
+    /* Start screen - full height centering */
+    .min-h-screen .flex.flex-col.items-center.justify-center {
+      height: 100vh !important;
+      justify-content: center !important;
+      padding: 2rem !important;
+    }
+  }
 }
