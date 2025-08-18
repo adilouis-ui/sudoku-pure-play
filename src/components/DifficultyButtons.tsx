@@ -14,19 +14,19 @@ export const DifficultyButtons: React.FC<DifficultyButtonsProps> = ({
         className="difficulty-btn difficulty-warm-up"
         onClick={() => onDifficultySelect('warm-up')}
       >
-        Just a Warm-up
+        Rookie
       </button>
       <button
         className="difficulty-btn difficulty-challenge"
         onClick={() => onDifficultySelect('challenge')}
       >
-        Challenge Me
+        Pro
       </button>
       <button
         className="difficulty-btn difficulty-brain-fire"
         onClick={() => onDifficultySelect('brain-fire')}
       >
-        Brain on Fire
+        Master
       </button>
     </div>
   );
