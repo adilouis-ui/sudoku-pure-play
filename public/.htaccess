@@ -1,6 +1,8 @@
 # Ensure modern JavaScript modules are served with the correct MIME type
 AddType application/javascript .js
 AddType application/javascript .mjs
+AddType text/typescript .tsx
+AddType text/typescript .ts
 
 # Security headers for production
 Header always set X-Content-Type-Options nosniff
