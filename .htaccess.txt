@@ -1,3 +1,0 @@
-# Ensure modern JavaScript modules are served with the correct MIME type
-AddType application/javascript .js
-AddType application/javascript .mjs
