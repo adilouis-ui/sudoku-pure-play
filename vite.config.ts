@@ -24,6 +24,7 @@ export default defineConfig(({ mode }) => ({
     outDir: 'dist',
     minify: 'terser',
     sourcemap: false,
+    target: 'es2015', // Ensure broad compatibility
     rollupOptions: {
       external: mode === 'production' ? ['eruda'] : [],
       output: {
