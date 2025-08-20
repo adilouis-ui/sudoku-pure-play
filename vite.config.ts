@@ -27,6 +27,9 @@ export default defineConfig(({ mode }) => ({
     target: 'es2015', // Ensure broad compatibility
     rollupOptions: {
       external: mode === 'production' ? ['eruda'] : [],
+      input: {
+        main: path.resolve(__dirname, 'index.html')
+      },
       output: {
         format: 'iife',
         name: 'KukuSudoku',
