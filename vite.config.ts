@@ -33,7 +33,7 @@ export default defineConfig(({ mode }) => ({
         chunkFileNames: 'assets/chunk-[name].js',
         assetFileNames: 'assets/[name].[ext]',
         manualChunks: undefined,
-        inlineDynamicImports: true, // Force single bundle
+        inlineDynamicImports: true,
       }
     },
     chunkSizeWarningLimit: 1000,
