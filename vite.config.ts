@@ -27,10 +27,11 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       external: mode === 'production' ? ['eruda'] : [], // Exclude eruda from production
       output: {
-        entryFileNames: 'assets/index-[hash].js',
-        chunkFileNames: 'assets/chunk-[name]-[hash].js',
-        assetFileNames: 'assets/[name]-[hash].[ext]',
-        manualChunks: undefined, // Let Vite handle chunking
+        format: 'iife', // Use IIFE format instead of ES modules
+        entryFileNames: 'assets/app.bundle.js',
+        chunkFileNames: 'assets/chunk-[name].js',
+        assetFileNames: 'assets/[name].[ext]',
+        manualChunks: undefined, // Single bundle
       }
     },
     chunkSizeWarningLimit: 1000,
