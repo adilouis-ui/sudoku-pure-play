@@ -23,15 +23,17 @@ export default defineConfig(({ mode }) => ({
   build: {
     outDir: 'dist',
     minify: 'terser',
-    sourcemap: false, // Remove source maps for production
+    sourcemap: false,
     rollupOptions: {
-      external: mode === 'production' ? ['eruda'] : [], // Exclude eruda from production
+      external: mode === 'production' ? ['eruda'] : [],
       output: {
-        format: 'iife', // Use IIFE format instead of ES modules
+        format: 'iife',
+        name: 'KukuSudoku',
         entryFileNames: 'assets/app.bundle.js',
         chunkFileNames: 'assets/chunk-[name].js',
         assetFileNames: 'assets/[name].[ext]',
-        manualChunks: undefined, // Single bundle
+        manualChunks: undefined,
+        inlineDynamicImports: true, // Force single bundle
       }
     },
     chunkSizeWarningLimit: 1000,
