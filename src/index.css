@@ -548,19 +548,30 @@
     }
   }
 
-  /* DESKTOP LAYOUT OPTIMIZATION - Eliminate vertical scrolling */
-  @media (min-width: 769px) {
+  /* DESKTOP LAYOUT OPTIMIZATION - Flexbox layout for footer visibility */
+  @media (min-width: 768px) {
     /* Desktop-specific pre-filled number styling */
     .sudoku-cell-container.given .sudoku-cell-input {
       font-weight: 500;
     }
 
-    /* Full-height page container */
-    html, body, #root {
-      height: 100vh !important;
-      overflow: hidden !important;
-      margin: 0 !important;
-      padding: 0 !important;
+    /* Flexbox layout for proper footer positioning */
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* Use min-height to ensure it's at least as tall as the screen */
+      margin: 0; /* Reset any default body margin */
+    }
+
+    #root {
+      flex-grow: 1; /* This is the key: makes #root expand to fill all available space */
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* This helps center the board vertically */
+    }
+
+    footer {
+      flex-shrink: 0; /* Prevents the footer from shrinking if space is tight */
     }
 
     /* DESKTOP OVERRIDES - Larger spacing only for desktop */
