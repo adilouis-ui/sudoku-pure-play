@@ -574,15 +574,27 @@
       font-weight: 500;
     }
 
+    /* This makes the body a full-height flex container */
     body {
-      /* On desktop, we want to prevent scrolling completely */
-      height: 100vh;
-      overflow: hidden; 
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* Use min-height, NOT height. This is the key fix. */
+      margin: 0;
     }
-    
+
+    /* This makes the main content area grow to fill all available space,
+       pushing the footer down to the bottom of the screen. */
     #root {
-      /* This vertically centers the board on desktop */
-      justify-content: center;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* This vertically centers the board */
+      align-items: center;     /* This horizontally centers the board */
+    }
+
+    /* This ensures the footer never shrinks */
+    footer {
+      flex-shrink: 0;
     }
   }
 }
