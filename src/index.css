@@ -596,5 +596,11 @@
     footer {
       flex-shrink: 0;
     }
+
+    /* This is the critical rule that constrains the board's size */
+    .sudoku-grid {
+      max-width: 600px;
+      max-height: calc(100vh - 200px);
+    }
   }
 }
