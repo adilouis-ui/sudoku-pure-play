@@ -548,87 +548,41 @@
     }
   }
 
-  /* DESKTOP LAYOUT OPTIMIZATION - Flexbox layout for footer visibility */
+  /* --- Base Styles (Mobile First) --- */
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures body is at least as tall as the screen */
+    margin: 0;
+    background-color: hsl(var(--background));
+  }
+
+  #root {
+    flex-grow: 1; /* This is the key: makes #root expand to fill available space */
+    display: flex;
+    flex-direction: column;
+  }
+
+  footer {
+    flex-shrink: 0; /* Prevents the footer from shrinking */
+  }
+
+  /* --- Desktop-Specific Overrides --- */
   @media (min-width: 768px) {
     /* Desktop-specific pre-filled number styling */
     .sudoku-cell-container.given .sudoku-cell-input {
       font-weight: 500;
     }
 
-    /* Flexbox layout for proper footer positioning */
     body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh; /* Use min-height to ensure it's at least as tall as the screen */
-      margin: 0; /* Reset any default body margin */
+      /* On desktop, we want to prevent scrolling completely */
+      height: 100vh;
+      overflow: hidden; 
     }
-
+    
     #root {
-      flex-grow: 1; /* This is the key: makes #root expand to fill all available space */
-      display: flex;
-      flex-direction: column;
-      justify-content: center; /* This helps center the board vertically */
-    }
-
-    footer {
-      flex-shrink: 0; /* Prevents the footer from shrinking if space is tight */
-    }
-
-    /* DESKTOP OVERRIDES - Larger spacing only for desktop */
-    .min-h-screen {
-      height: 100vh !important;
-      min-height: 100vh !important;
-      display: flex !important;
-      flex-direction: column !important;
-      overflow: hidden !important;
-      gap: 2rem !important; /* Desktop spacing - larger gap */
-    }
-
-    /* Game view container - full height management */
-    .min-h-screen.bg-background {
-      height: 100vh !important;
-    }
-
-    /* Navigation bar - fixed height at top */
-    .min-h-screen nav {
-      flex-shrink: 0 !important;
-      height: auto !important;
-      padding: 1rem 1.5rem !important;
-    }
-
-    /* Game content area - takes remaining space and centers content */
-    .min-h-screen .flex-1 {
-      flex: 1 !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      margin: 0 !important;
-      padding: 1rem !important;
-      overflow: hidden !important;
-    }
-
-    /* Sudoku grid - very conservative sizing for small laptop screens */
-    .sudoku-grid {
-      /* Much more aggressive buffer to ensure borders are never cropped */
-      max-height: calc(100vh - 180px) !important; /* Large buffer for all UI elements */
-      max-width: calc(100vh - 180px) !important;
-      width: min(320px, calc(100vh - 180px)) !important;
-      height: min(320px, calc(100vh - 180px)) !important;
-      aspect-ratio: 1 / 1 !important;
-      margin: 0 !important;
-    }
-
-    /* Instructions at bottom - minimal padding */
-    .min-h-screen .pb-8 {
-      padding-bottom: 1rem !important;
-      flex-shrink: 0 !important;
-    }
-
-    /* Start screen - full height centering */
-    .min-h-screen .flex.flex-col.items-center.justify-center {
-      height: 100vh !important;
-      justify-content: center !important;
-      padding: 2rem !important;
+      /* This vertically centers the board on desktop */
+      justify-content: center;
     }
   }
 }
