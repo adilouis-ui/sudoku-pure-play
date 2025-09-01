@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useSudoku, Difficulty } from '@/hooks/useSudoku';
 import { SudokuGrid } from './SudokuGrid';
 import { DifficultyButtons } from './DifficultyButtons';
@@ -116,18 +115,6 @@ export const SudokuGame: React.FC = () => {
               Click a cell and type 1-9 to fill it • Press Backspace to clear
             </div>
           )}
-
-          {/* Footer */}
-          <footer className="bg-background border-t border-border px-6 py-4 mt-auto">
-            <div className="flex items-center justify-center max-w-6xl mx-auto">
-              <Link 
-                to="/how-to-play" 
-                className="text-sm text-muted-foreground hover:text-primary transition-colors underline"
-              >
-                How to Play Sudoku
-              </Link>
-            </div>
-          </footer>
         </div>
       )}
 
