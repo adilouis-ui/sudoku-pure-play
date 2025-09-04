@@ -3,6 +3,7 @@ import { useSudoku, Difficulty } from '@/hooks/useSudoku';
 import { SudokuGrid } from './SudokuGrid';
 import { DifficultyButtons } from './DifficultyButtons';
 import { ConfettiAnimation } from './ConfettiAnimation';
+import { Footer } from './Footer';
 
 export const SudokuGame: React.FC = () => {
   const [currentDifficulty, setCurrentDifficulty] = useState<Difficulty>('challenge');
@@ -120,6 +121,9 @@ export const SudokuGame: React.FC = () => {
 
       {/* Confetti Animation */}
       <ConfettiAnimation isVisible={isComplete} />
+      
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
