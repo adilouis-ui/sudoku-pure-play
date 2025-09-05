@@ -618,6 +618,15 @@
       height: 100vh !important;
       justify-content: center !important;
       padding: 2rem !important;
-    }
   }
+}
+
+/* Mobile menu visual glitch fix */
+body.mobile-menu-open {
+  overflow: hidden;
+}
+
+body.mobile-menu-open *:not(.mobile-menu *):not(.mobile-menu) {
+  pointer-events: none;
+}
 }
