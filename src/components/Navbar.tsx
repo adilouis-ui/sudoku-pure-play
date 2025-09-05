@@ -1,16 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  useEffect(() => {
-    if (isMenuOpen) {
-      document.body.classList.add('mobile-menu-open');
-    } else {
-      document.body.classList.remove('mobile-menu-open');
-    }
-  }, [isMenuOpen]);
 
   return (
     <header className="bg-background border-b border-border">
