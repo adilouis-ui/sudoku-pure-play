@@ -6,8 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Layout from "./components/Layout"; // Import the new Layout component
 import Index from "./pages/Index";
+import HowToPlay from "./pages/HowToPlay";
+import Printable from "./pages/Printable";
 import NotFound from "./pages/NotFound";
-// We will add imports for other pages like HowToPlay later.
 
 const queryClient = new QueryClient();
 
@@ -22,8 +23,8 @@ const App = () => (
           <Route path="/" element={<Layout />}>
             {/* The 'index' route renders inside the Outlet when the path is just "/" */}
             <Route index element={<Index />} />
-            
-            {/* We will add other pages like <Route path="how-to-play" ... /> here later. */}
+            <Route path="how-to-play" element={<HowToPlay />} />
+            <Route path="printable" element={<Printable />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
