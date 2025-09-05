@@ -57,27 +57,19 @@ export const SudokuGame: React.FC = () => {
           />
         </div>
       ) : (
-        // Game view with navigation bar
-        <div className="min-h-screen flex flex-col">
-          {/* Navigation Bar */}
-          <nav className="bg-background border-b border-border px-6 py-4">
-            <div className="flex items-center justify-between max-w-6xl mx-auto">
-              <h1 className="text-2xl font-light text-foreground tracking-wide">
-                Sudoku
-              </h1>
-              <div className="flex-1 flex justify-center">
-                <DifficultyButtons 
-                  onDifficultySelect={handleDifficultySelect}
-                  currentDifficulty={currentDifficulty}
-                  variant="segmented"
-                />
-              </div>
-              <div className="w-24"></div> {/* Spacer for centering */}
-            </div>
-          </nav>
+        // Game view without duplicate navigation
+        <div className="flex flex-col gap-6 p-4">
+          {/* Difficulty Controls */}
+          <div className="flex justify-center">
+            <DifficultyButtons 
+              onDifficultySelect={handleDifficultySelect}
+              currentDifficulty={currentDifficulty}
+              variant="segmented"
+            />
+          </div>
 
           {/* Game Content */}
-          <div className="flex-1 flex items-center justify-center p-4">
+          <div className="flex justify-center">
             <div className="relative">
               <SudokuGrid
                 grid={grid}
