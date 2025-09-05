@@ -2,18 +2,7 @@ import { Link } from "react-router-dom";
 
 const Printable = () => {
   return (
-    <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="bg-background border-b border-border px-6 py-4">
-        <div className="flex items-center justify-between max-w-4xl mx-auto">
-          <Link to="/" className="text-2xl font-light text-foreground tracking-wide hover:opacity-80 transition-opacity">
-            Sudoku
-          </Link>
-        </div>
-      </nav>
-
-      {/* Main Content */}
-      <main className="max-w-4xl mx-auto px-6 py-12">
+    <div className="max-w-4xl mx-auto px-6 py-12">
         <h1 className="text-4xl sm:text-5xl font-light text-foreground mb-8 tracking-wide">
           Printable Sudoku Puzzles - A New Challenge Daily
         </h1>
@@ -125,32 +114,6 @@ const Printable = () => {
             </Link>
           </div>
         </div>
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-background border-t border-border mt-16">
-        <div className="max-w-4xl mx-auto px-6 py-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="text-center sm:text-left text-muted-foreground">
-              <p>&copy; 2024 Kuku Sudoku. Challenge your mind daily.</p>
-            </div>
-            <div className="flex gap-6">
-              <Link 
-                to="/how-to-play" 
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                How to Play
-              </Link>
-              <Link 
-                to="/printable" 
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Printable Puzzles
-              </Link>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };
