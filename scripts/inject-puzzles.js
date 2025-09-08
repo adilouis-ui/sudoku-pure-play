@@ -1,48 +1,39 @@
 import { readFileSync, writeFileSync } from 'fs';
-import cheerio from 'cheerio';
-import puzzles from '../puzzles.json' assert { type: 'json' };
+import { load } from 'cheerio'; // CORRECTED IMPORT: Use a named import for 'load'
+import puzzles from '../puzzles.json' with { type: 'json' }; // CORRECTED IMPORT: Use 'with' instead of 'assert'
 
 // Load the HTML template
 const htmlTemplate = readFileSync('public/printable-template.html', 'utf-8');
-const $ = cheerio.load(htmlTemplate);
+const $ = load(htmlTemplate); // Use the imported 'load' function directly
 
-// Helper function to populate a grid
-function populateGrid(selector, gridData, cellClass = 'sudoku-cell') {
-  const gridContainer = $(selector);
-  gridContainer.empty(); // Clear existing content
-  
-  // Create 81 cells for the 9x9 grid
+// --- Helper function to populate a grid ---
+function populateGrid(selector, gridData) {
+  const grid = $(selector);
+  const cells = grid.find('td'); // Assuming the grid is a <table> with <td> cells
   for (let i = 0; i < 81; i++) {
-    const cellValue = gridData[i] || '';
-    const cellElement = `<div class="${cellClass}">${cellValue}</div>`;
-    gridContainer.append(cellElement);
+    const row = Math.floor(i / 9);
+    const col = i % 9;
+    const value = gridData[row][col];
+    if (value !== 0) {
+      $(cells[i]).text(value);
+    }
   }
 }
 
-// Populate the puzzles
+// Note to Lovable: You must ensure the template uses a <table> structure with 81 <td> elements for this to work.
+
+// Populate the puzzles and solutions
 populateGrid('#easy-puzzle-grid', puzzles.easy.puzzle);
 populateGrid('#medium-puzzle-grid', puzzles.medium.puzzle);
 populateGrid('#hard-puzzle-grid', puzzles.hard.puzzle);
 
-// Populate the solutions with solution-cell class
-populateGrid('#easy-solution-grid', puzzles.easy.solution, 'solution-cell');
-populateGrid('#medium-solution-grid', puzzles.medium.solution, 'solution-cell');
-populateGrid('#hard-solution-grid', puzzles.hard.solution, 'solution-cell');
+populateGrid('#easy-solution-grid', puzzles.easy.solution);
+populateGrid('#medium-solution-grid', puzzles.medium.solution);
+populateGrid('#hard-solution-grid', puzzles.hard.solution);
 
 // Update the date
-const today = new Date();
-const dateString = today.toLocaleDateString('en-US', { 
-  weekday: 'long', 
-  year: 'numeric', 
-  month: 'long', 
-  day: 'numeric' 
-});
-$('#date-placeholder').text(dateString);
-
-// Update generation timestamp
-const timestamp = today.toLocaleString('en-US');
-$('footer p').last().html(`© 2024 Kuku Sudoku. All rights reserved. | Generated: ${timestamp}`);
+$('#date-placeholder').text(new Date().toLocaleDateString('en-US'));
 
 // Save the new, populated HTML file
 writeFileSync('temp-printable.html', $.html());
-console.log('Successfully created temp-printable.html with populated puzzles');
+console.log('Successfully created temp-printable.html');
