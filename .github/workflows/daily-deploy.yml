@@ -8,6 +8,11 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    
+    # THIS IS THE CRITICAL FIX
+    permissions:
+      contents: write # Grants the workflow permission to push to the repo
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
