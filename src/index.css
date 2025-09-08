@@ -548,23 +548,25 @@
     }
   }
 
-  /* DESKTOP LAYOUT OPTIMIZATION - Eliminate vertical scrolling */
+  /* DESKTOP LAYOUT OPTIMIZATION - Eliminate vertical scrolling ONLY on homepage */
   @media (min-width: 769px) {
     /* Desktop-specific pre-filled number styling */
     .sudoku-cell-container.given .sudoku-cell-input {
       font-weight: 500;
     }
 
-    /* Full-height page container */
-    html, body, #root {
+    /* Full-height page container - ONLY for homepage */
+    body.page-home, 
+    body.page-home html, 
+    body.page-home #root {
       height: 100vh !important;
       overflow: hidden !important;
       margin: 0 !important;
       padding: 0 !important;
     }
 
-    /* DESKTOP OVERRIDES - Larger spacing only for desktop */
-    .min-h-screen {
+    /* DESKTOP OVERRIDES - Larger spacing only for homepage */
+    body.page-home .min-h-screen {
       height: 100vh !important;
       min-height: 100vh !important;
       display: flex !important;
@@ -573,20 +575,20 @@
       gap: 2rem !important; /* Desktop spacing - larger gap */
     }
 
-    /* Game view container - full height management */
-    .min-h-screen.bg-background {
+    /* Game view container - full height management - ONLY for homepage */
+    body.page-home .min-h-screen.bg-background {
       height: 100vh !important;
     }
 
-    /* Navigation bar - fixed height at top */
-    .min-h-screen nav {
+    /* Navigation bar - fixed height at top - ONLY for homepage */
+    body.page-home .min-h-screen nav {
       flex-shrink: 0 !important;
       height: auto !important;
       padding: 1rem 1.5rem !important;
     }
 
-    /* Game content area - takes remaining space and centers content */
-    .min-h-screen .flex-1 {
+    /* Game content area - takes remaining space and centers content - ONLY for homepage */
+    body.page-home .min-h-screen .flex-1 {
       flex: 1 !important;
       display: flex !important;
       align-items: center !important;
@@ -596,8 +598,8 @@
       overflow: hidden !important;
     }
 
-    /* Sudoku grid - very conservative sizing for small laptop screens */
-    .sudoku-grid {
+    /* Sudoku grid - very conservative sizing for small laptop screens - ONLY for homepage */
+    body.page-home .sudoku-grid {
       /* Much more aggressive buffer to ensure borders are never cropped */
       max-height: calc(100vh - 180px) !important; /* Large buffer for all UI elements */
       max-width: calc(100vh - 180px) !important;
@@ -607,14 +609,14 @@
       margin: 0 !important;
     }
 
-    /* Instructions at bottom - minimal padding */
-    .min-h-screen .pb-8 {
+    /* Instructions at bottom - minimal padding - ONLY for homepage */
+    body.page-home .min-h-screen .pb-8 {
       padding-bottom: 1rem !important;
       flex-shrink: 0 !important;
     }
 
-    /* Start screen - full height centering */
-    .min-h-screen .flex.flex-col.items-center.justify-center {
+    /* Start screen - full height centering - ONLY for homepage */
+    body.page-home .min-h-screen .flex.flex-col.items-center.justify-center {
       height: 100vh !important;
       justify-content: center !important;
       padding: 2rem !important;
