@@ -2,24 +2,24 @@ name: Generate and Deploy Daily Sudoku PDF
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs at midnight UTC daily
+    - cron: '0 0 * * *' # Runs at midnight UTC
   workflow_dispatch: # Allows manual running
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check out repository
+        uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v4
+      - name: Set up Node.js v20
+        uses: actions/setup-node@v3
         with:
-          node-version: '18'
-          cache: 'npm'
+          node-version: '20' # UPDATED from 18 to 20
+          cache: 'npm' # ADDED caching for npm
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Generate new puzzle data
         run: node scripts/generate-puzzles.js
@@ -35,9 +35,5 @@ jobs:
           git config --global user.name 'GitHub Actions Bot'
           git config --global user.email 'actions@github.com'
           git add public/daily-sudoku.pdf
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "feat: Generate new daily Sudoku PDF for $(date +'%Y-%m-%d')"
-            git push
-          fi
+          git commit -m "feat: Generate new daily Sudoku PDF for $(date +'%Y-%m-%d')" || echo "No changes to commit"
+          git push
