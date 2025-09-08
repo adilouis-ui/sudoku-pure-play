@@ -1,6 +1,11 @@
-const puppeteer = require('puppeteer');
-const path = require('path');
-const fs = require('fs');
+import puppeteer from 'puppeteer';
+import path from 'path';
+import { existsSync, unlinkSync } from 'fs';
+import { fileURLToPath } from 'url';
+
+// Helper to get the correct directory path in ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 (async () => {
   const browser = await puppeteer.launch({ 
@@ -12,7 +17,7 @@ const fs = require('fs');
   // Load the temporary HTML file
   const htmlPath = path.resolve(__dirname, '../temp-printable.html');
   
-  if (!fs.existsSync(htmlPath)) {
+  if (!existsSync(htmlPath)) {
     console.error('temp-printable.html not found. Run inject-puzzles.js first.');
     process.exit(1);
   }
@@ -35,8 +40,8 @@ const fs = require('fs');
   await browser.close();
   
   // Clean up temporary file
-  fs.unlinkSync(htmlPath);
-  fs.unlinkSync('puzzles.json');
+  unlinkSync(htmlPath);
+  unlinkSync('puzzles.json');
   
   console.log('Successfully created daily-sudoku.pdf from HTML template');
 })();

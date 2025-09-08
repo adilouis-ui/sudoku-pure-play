@@ -1,9 +1,9 @@
-const fs = require('fs');
-const cheerio = require('cheerio');
-const puzzles = require('../puzzles.json');
+import { readFileSync, writeFileSync } from 'fs';
+import cheerio from 'cheerio';
+import puzzles from '../puzzles.json' assert { type: 'json' };
 
 // Load the HTML template
-const htmlTemplate = fs.readFileSync('public/printable-template.html', 'utf-8');
+const htmlTemplate = readFileSync('public/printable-template.html', 'utf-8');
 const $ = cheerio.load(htmlTemplate);
 
 // Helper function to populate a grid
@@ -44,5 +44,5 @@ const timestamp = today.toLocaleString('en-US');
 $('footer p').last().html(`© 2024 Kuku Sudoku. All rights reserved. | Generated: ${timestamp}`);
 
 // Save the new, populated HTML file
-fs.writeFileSync('temp-printable.html', $.html());
+writeFileSync('temp-printable.html', $.html());
 console.log('Successfully created temp-printable.html with populated puzzles');

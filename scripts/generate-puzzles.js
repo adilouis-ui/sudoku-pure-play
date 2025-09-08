@@ -1,5 +1,5 @@
-const sudoku = require('sudoku');
-const fs = require('fs');
+import sudoku from 'sudoku';
+import { writeFileSync } from 'fs';
 
 // Generate puzzles with different difficulty levels
 const puzzles = {
@@ -36,5 +36,5 @@ puzzles.hard.puzzle = formatGrid(puzzles.hard.puzzle);
 puzzles.hard.solution = formatGrid(puzzles.hard.solution);
 
 // Save to JSON file
-fs.writeFileSync('puzzles.json', JSON.stringify(puzzles, null, 2));
+writeFileSync('puzzles.json', JSON.stringify(puzzles, null, 2));
 console.log('Successfully generated and saved puzzles.json');
