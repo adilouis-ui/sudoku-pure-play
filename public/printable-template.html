@@ -226,7 +226,7 @@
 <body>
   <header>
     <h1>Kuku Sudoku - Daily Puzzles</h1>
-    <p class="date">Date: [Insert Today's Date]</p>
+    <p class="date">Date: <span id="date-placeholder">[Insert Today's Date]</span></p>
   </header>
 
   <div class="instructions no-print">
@@ -236,63 +236,22 @@
 
   <section class="puzzle-section">
     <h3>Easy</h3>
-    <div class="placeholder">
-      [Easy Sudoku Grid - Replace with actual puzzle]
-    </div>
-    <div class="sudoku-grid">
-      <!-- 81 cells for Easy puzzle - to be populated -->
-      <div class="sudoku-cell">5</div>
-      <div class="sudoku-cell">3</div>
-      <div class="sudoku-cell"></div>
-      <div class="sudoku-cell"></div>
-      <div class="sudoku-cell">7</div>
-      <div class="sudoku-cell"></div>
-      <div class="sudoku-cell"></div>
-      <div class="sudoku-cell"></div>
-      <div class="sudoku-cell"></div>
-      <div class="sudoku-cell">6</div>
-      <div class="sudoku-cell"></div>
-      <div class="sudoku-cell"></div>
-      <div class="sudoku-cell">1</div>
-      <div class="sudoku-cell">9</div>
-      <div class="sudoku-cell">5</div>
-      <div class="sudoku-cell"></div>
-      <div class="sudoku-cell"></div>
-      <div class="sudoku-cell"></div>
-      <!-- Continue for all 81 cells - this is just a sample -->
-      <div class="sudoku-cell"></div>
-      <div class="sudoku-cell">9</div>
-      <div class="sudoku-cell">8</div>
-      <div class="sudoku-cell"></div>
-      <div class="sudoku-cell"></div>
-      <div class="sudoku-cell"></div>
-      <div class="sudoku-cell"></div>
-      <div class="sudoku-cell">6</div>
-      <div class="sudoku-cell"></div>
-      <!-- Fill remaining cells as needed -->
-      <div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div>
-      <div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div>
-      <div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div>
-      <div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div>
-      <div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div>
-      <div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div>
-      <div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div>
-      <div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div>
-      <div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div>
+    <div class="sudoku-grid" id="easy-puzzle-grid">
+      <!-- 81 cells for Easy puzzle - to be populated by script -->
     </div>
   </section>
 
   <section class="puzzle-section">
     <h3>Medium</h3>
-    <div class="placeholder">
-      [Medium Sudoku Grid - Replace with actual puzzle]
+    <div class="sudoku-grid" id="medium-puzzle-grid">
+      <!-- 81 cells for Medium puzzle - to be populated by script -->
     </div>
   </section>
 
   <section class="puzzle-section">
     <h3>Hard</h3>
-    <div class="placeholder">
-      [Hard Sudoku Grid - Replace with actual puzzle]
+    <div class="sudoku-grid" id="hard-puzzle-grid">
+      <!-- 81 cells for Hard puzzle - to be populated by script -->
     </div>
   </section>
 
@@ -316,22 +275,22 @@
 
   <section class="puzzle-section">
     <h3>Easy Solution</h3>
-    <div class="placeholder">
-      [Easy Solution Grid - Replace with actual solution]
+    <div class="solution-grid" id="easy-solution-grid">
+      <!-- 81 cells for Easy solution - to be populated by script -->
     </div>
   </section>
 
   <section class="puzzle-section">
     <h3>Medium Solution</h3>
-    <div class="placeholder">
-      [Medium Solution Grid - Replace with actual solution]
+    <div class="solution-grid" id="medium-solution-grid">
+      <!-- 81 cells for Medium solution - to be populated by script -->
     </div>
   </section>
 
   <section class="puzzle-section">
     <h3>Hard Solution</h3>
-    <div class="placeholder">
-      [Hard Solution Grid - Replace with actual solution]
+    <div class="solution-grid" id="hard-solution-grid">
+      <!-- 81 cells for Hard solution - to be populated by script -->
     </div>
   </section>
 
