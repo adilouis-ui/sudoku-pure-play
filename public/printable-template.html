@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuku Sudoku - Daily Printable</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.4;
+      color: #000;
+      background: #fff;
+      padding: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Print-specific styles */
+    @media print {
+      body {
+        padding: 15px;
+        font-size: 12px;
+      }
+      
+      .no-print {
+        display: none !important;
+      }
+      
+      .page-break {
+        page-break-before: always;
+      }
+      
+      .puzzle-section {
+        margin-bottom: 30px;
+      }
+      
+      header h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      
+      .date {
+        font-size: 14px;
+        margin-bottom: 20px;
+      }
+    }
+
+    /* Header styles */
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #000;
+      padding-bottom: 15px;
+    }
+
+    header h1 {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .date {
+      font-size: 16px;
+      color: #666;
+      font-weight: normal;
+    }
+
+    /* Section styles */
+    .puzzle-section {
+      margin-bottom: 40px;
+      page-break-inside: avoid;
+    }
+
+    .puzzle-section h3 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      text-align: center;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Sudoku grid styles */
+    .sudoku-grid {
+      width: 300px;
+      height: 300px;
+      margin: 0 auto 20px;
+      border: 3px solid #000;
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      grid-template-rows: repeat(9, 1fr);
+    }
+
+    .sudoku-cell {
+      width: 100%;
+      height: 100%;
+      border: 1px solid #666;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: bold;
+      background: #fff;
+    }
+
+    /* Thick borders for 3x3 blocks */
+    .sudoku-cell:nth-child(3n) {
+      border-right: 2px solid #000;
+    }
+
+    .sudoku-cell:nth-child(n+19):nth-child(-n+27),
+    .sudoku-cell:nth-child(n+46):nth-child(-n+54) {
+      border-bottom: 2px solid #000;
+    }
+
+    /* Remove extra borders at edges */
+    .sudoku-cell:nth-child(9n) {
+      border-right: none;
+    }
+
+    .sudoku-cell:nth-child(n+73) {
+      border-bottom: none;
+    }
+
+    /* Placeholder text styling */
+    .placeholder {
+      color: #ccc;
+      font-style: italic;
+      text-align: center;
+      padding: 20px;
+      border: 2px dashed #ccc;
+      margin: 0 auto 20px;
+      width: 300px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Footer styles */
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #ccc;
+    }
+
+    footer h3 {
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    .qr-placeholder {
+      width: 100px;
+      height: 100px;
+      border: 2px dashed #ccc;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 12px;
+    }
+
+    /* Instructions section */
+    .instructions {
+      margin: 20px 0;
+      padding: 15px;
+      background: #f9f9f9;
+      border-left: 4px solid #000;
+    }
+
+    .instructions h4 {
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .instructions p {
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    /* Solutions page header */
+    .solutions-header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 2px solid #000;
+    }
+
+    .solutions-header h1 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    /* Compact grid for solutions */
+    .solution-grid {
+      width: 250px;
+      height: 250px;
+      margin: 0 auto 30px;
+      border: 2px solid #000;
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      grid-template-rows: repeat(9, 1fr);
+    }
+
+    .solution-cell {
+      width: 100%;
+      height: 100%;
+      border: 1px solid #666;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: normal;
+      background: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Kuku Sudoku - Daily Puzzles</h1>
+    <p class="date">Date: [Insert Today's Date]</p>
+  </header>
+
+  <div class="instructions no-print">
+    <h4>How to Use This Printable:</h4>
+    <p>Fill in the empty cells with numbers 1-9. Each row, column, and 3×3 box must contain all digits from 1 to 9 exactly once. Solutions are provided on the next page.</p>
+  </div>
+
+  <section class="puzzle-section">
+    <h3>Easy</h3>
+    <div class="placeholder">
+      [Easy Sudoku Grid - Replace with actual puzzle]
+    </div>
+    <div class="sudoku-grid">
+      <!-- 81 cells for Easy puzzle - to be populated -->
+      <div class="sudoku-cell">5</div>
+      <div class="sudoku-cell">3</div>
+      <div class="sudoku-cell"></div>
+      <div class="sudoku-cell"></div>
+      <div class="sudoku-cell">7</div>
+      <div class="sudoku-cell"></div>
+      <div class="sudoku-cell"></div>
+      <div class="sudoku-cell"></div>
+      <div class="sudoku-cell"></div>
+      <div class="sudoku-cell">6</div>
+      <div class="sudoku-cell"></div>
+      <div class="sudoku-cell"></div>
+      <div class="sudoku-cell">1</div>
+      <div class="sudoku-cell">9</div>
+      <div class="sudoku-cell">5</div>
+      <div class="sudoku-cell"></div>
+      <div class="sudoku-cell"></div>
+      <div class="sudoku-cell"></div>
+      <!-- Continue for all 81 cells - this is just a sample -->
+      <div class="sudoku-cell"></div>
+      <div class="sudoku-cell">9</div>
+      <div class="sudoku-cell">8</div>
+      <div class="sudoku-cell"></div>
+      <div class="sudoku-cell"></div>
+      <div class="sudoku-cell"></div>
+      <div class="sudoku-cell"></div>
+      <div class="sudoku-cell">6</div>
+      <div class="sudoku-cell"></div>
+      <!-- Fill remaining cells as needed -->
+      <div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div>
+      <div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div>
+      <div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div>
+      <div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div>
+      <div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div>
+      <div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div>
+      <div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div>
+      <div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div>
+      <div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div><div class="sudoku-cell"></div>
+    </div>
+  </section>
+
+  <section class="puzzle-section">
+    <h3>Medium</h3>
+    <div class="placeholder">
+      [Medium Sudoku Grid - Replace with actual puzzle]
+    </div>
+  </section>
+
+  <section class="puzzle-section">
+    <h3>Hard</h3>
+    <div class="placeholder">
+      [Hard Sudoku Grid - Replace with actual puzzle]
+    </div>
+  </section>
+
+  <footer>
+    <hr>
+    <h3>Play online at <strong>kukusudoku.com</strong></h3>
+    <div class="qr-placeholder">
+      QR Code Here
+    </div>
+    <p style="font-size: 12px; margin-top: 10px; color: #666;">
+      Visit our website for unlimited puzzles, hints, and more!
+    </p>
+  </footer>
+
+  <div class="page-break"></div>
+  
+  <div class="solutions-header">
+    <h1>Solutions</h1>
+    <p style="font-size: 14px; color: #666;">Check your answers below</p>
+  </div>
+
+  <section class="puzzle-section">
+    <h3>Easy Solution</h3>
+    <div class="placeholder">
+      [Easy Solution Grid - Replace with actual solution]
+    </div>
+  </section>
+
+  <section class="puzzle-section">
+    <h3>Medium Solution</h3>
+    <div class="placeholder">
+      [Medium Solution Grid - Replace with actual solution]
+    </div>
+  </section>
+
+  <section class="puzzle-section">
+    <h3>Hard Solution</h3>
+    <div class="placeholder">
+      [Hard Solution Grid - Replace with actual solution]
+    </div>
+  </section>
+
+  <footer style="margin-top: 40px; font-size: 12px; color: #999;">
+    <p>© 2024 Kuku Sudoku. All rights reserved. | Generated: [Insert Generation Timestamp]</p>
+  </footer>
+
+</body>
+</html>
