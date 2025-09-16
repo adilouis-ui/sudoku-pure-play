@@ -35,6 +35,12 @@ jobs:
       - name: Convert HTML to PDF
         run: node scripts/create-pdf.js
 
+      - name: Upload Temporary HTML for Debugging
+        uses: actions/upload-artifact@v3
+        with:
+          name: debug-html-output
+          path: temp-printable.html
+
       - name: Commit and push the new PDF
         run: |
           git config --global user.name 'GitHub Actions Bot'
