@@ -20,26 +20,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: DEBUG - List files after checkout
-        run: ls -R
-
-      - name: Generate new puzzle data
-        run: node scripts/generate-puzzles.js
-
-      - name: Inject puzzles into HTML template
-        run: node scripts/inject-puzzles.js
-
-      - name: DEBUG - List files after injection
-        run: ls -R
-
-      - name: Upload Temporary HTML for Debugging
-        uses: actions/upload-artifact@v4
-        with:
-          name: debug-html-output
-          path: temp-printable.html
-
-      - name: Convert HTML to PDF
-        run: node scripts/create-pdf.js
+      - name: Generate and Create Daily PDF
+        run: node scripts/generate-daily-pdf.js
 
       - name: Commit and push the new PDF
         run: |
