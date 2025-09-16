@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync } from 'fs';
 import { load } from 'cheerio';
 import sudoku from 'sudoku';
 import puppeteer from 'puppeteer';
+import qrcode from 'qrcode';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -9,7 +10,11 @@ import { fileURLToPath } from 'url';
 async function generatePdf() {
   console.log('--- Starting Daily PDF Generation ---');
 
-  // 1. GENERATE PUZZLES (in memory)
+  // 1. GENERATE QR CODE (in memory)
+  const qrCodeDataUri = await qrcode.toDataURL('https://kukusudoku.com/');
+  console.log('Step 1: QR Code generated as Data URI.');
+
+  // 2. GENERATE PUZZLES (in memory)
   const puzzles = {
     easy: {
       puzzle: sudoku.makepuzzle(),
@@ -43,12 +48,15 @@ async function generatePdf() {
   puzzles.hard.puzzle = formatGrid(puzzles.hard.puzzle);
   puzzles.hard.solution = formatGrid(puzzles.hard.solution);
   
-  console.log('Step 1: Puzzles generated in memory.');
+  console.log('Step 2: Puzzles generated in memory.');
 
-  // 2. POPULATE HTML TEMPLATE (in memory)
+  // 3. POPULATE HTML TEMPLATE (in memory)
   const templatePath = 'public/printable-template.html';
   const htmlTemplate = readFileSync(templatePath, 'utf-8');
   const $ = load(htmlTemplate);
+
+  // Inject the QR Code Data URI into the image tag
+  $('#qr-code-img').attr('src', qrCodeDataUri);
 
   function populateGrid(selector, gridData) {
     const grid = $(selector);
@@ -69,9 +77,9 @@ async function generatePdf() {
   populateGrid('#hard-solution-grid', puzzles.hard.solution);
   
   const finalHtml = $.html();
-  console.log('Step 2: HTML template populated in memory.');
+  console.log('Step 3: HTML template populated in memory.');
 
-  // 3. CREATE PDF FROM HTML STRING (in memory)
+  // 4. CREATE PDF FROM HTML STRING (in memory)
   const browser = await puppeteer.launch({ args: ['--no-sandbox'] });
   const page = await browser.newPage();
   await page.setContent(finalHtml, { waitUntil: 'networkidle0' });
@@ -83,7 +91,7 @@ async function generatePdf() {
   });
 
   await browser.close();
-  console.log('Step 3: PDF successfully created from HTML string.');
+  console.log('Step 4: PDF successfully created from HTML string.');
   console.log('--- Daily PDF Generation Finished ---');
 }
 
