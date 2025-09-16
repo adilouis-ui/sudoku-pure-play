@@ -2,29 +2,26 @@ name: Generate and Deploy Daily Sudoku PDF
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs at midnight UTC
-  workflow_dispatch: # Allows manual running
+    - cron: '0 0 * * *'
+  workflow_dispatch:
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
-    
-    # THIS IS THE CRITICAL FIX
     permissions:
-      contents: write # Grants the workflow permission to push to the repo
-
+      contents: write
     steps:
-      - name: Check out repository
-        uses: actions/checkout@v3
-
-      - name: Set up Node.js v20
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: '20' # UPDATED from 18 to 20
-          cache: 'npm' # ADDED caching for npm
-
+          node-version: '20'
+          cache: 'npm'
+      
       - name: Install dependencies
         run: npm install
+
+      - name: DEBUG - List files after checkout
+        run: ls -R
 
       - name: Generate new puzzle data
         run: node scripts/generate-puzzles.js
@@ -32,14 +29,17 @@ jobs:
       - name: Inject puzzles into HTML template
         run: node scripts/inject-puzzles.js
 
-      - name: Convert HTML to PDF
-        run: node scripts/create-pdf.js
+      - name: DEBUG - List files after injection
+        run: ls -R
 
       - name: Upload Temporary HTML for Debugging
         uses: actions/upload-artifact@v4
         with:
           name: debug-html-output
           path: temp-printable.html
+
+      - name: Convert HTML to PDF
+        run: node scripts/create-pdf.js
 
       - name: Commit and push the new PDF
         run: |
