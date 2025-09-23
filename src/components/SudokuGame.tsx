@@ -38,7 +38,7 @@ export const SudokuGame: React.FC = () => {
   const hasStarted = grid.some(row => row.some(cell => cell !== null));
 
   return (
-    <>
+    <div className="min-h-screen bg-background overflow-x-hidden">
       {!hasStarted ? (
         // Initial centered view
         <div className="min-h-screen flex flex-col items-center justify-center p-4">
@@ -112,6 +112,6 @@ export const SudokuGame: React.FC = () => {
 
       {/* Confetti Animation */}
       <ConfettiAnimation isVisible={isComplete} />
-    </>
+    </div>
   );
 };
