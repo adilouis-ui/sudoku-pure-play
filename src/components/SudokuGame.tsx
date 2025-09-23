@@ -58,7 +58,7 @@ export const SudokuGame: React.FC = () => {
         </div>
       ) : (
         // Game view without duplicate navigation
-        <div className="flex flex-col gap-6 p-4">
+        <div className="flex flex-col gap-4 p-4">
           {/* Difficulty Controls */}
           <div className="flex justify-center">
             <DifficultyButtons 
@@ -103,9 +103,9 @@ export const SudokuGame: React.FC = () => {
 
           {/* Instructions */}
           {!isComplete && (
-            <div className="pb-8 text-center text-sm text-muted-foreground">
-              Click a cell and type 1-9 to fill it • Press Backspace to clear
-            </div>
+          <div className="pb-4 text-center text-sm text-muted-foreground">
+            Click a cell and type 1-9 to fill it • Press Backspace to clear
+          </div>
           )}
         </div>
       )}
