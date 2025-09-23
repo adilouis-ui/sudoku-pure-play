@@ -2,7 +2,7 @@ import { SudokuGame } from '@/components/SudokuGame';
 
 const Index = () => {
   return (
-    <div className="container mx-auto px-4 overflow-x-hidden -mt-4">
+    <div className="h-full flex flex-col justify-center items-center px-4">
       <SudokuGame />
     </div>
   );
