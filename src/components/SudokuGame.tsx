@@ -58,7 +58,7 @@ export const SudokuGame: React.FC = () => {
           <p className="text-sm text-muted-foreground mt-4">
             <a 
               href="/how-to-play" 
-              className="hover:underline"
+              className="text-muted-foreground hover:text-foreground hover:underline transition-colors"
             >
               First time playing? Learn the rules.
             </a>
