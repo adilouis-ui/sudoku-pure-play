@@ -55,6 +55,14 @@ export const SudokuGame: React.FC = () => {
             currentDifficulty={currentDifficulty}
             variant="standalone"
           />
+          <p className="text-sm text-muted-foreground mt-4">
+            <a 
+              href="/how-to-play" 
+              className="hover:underline"
+            >
+              First time playing? Learn the rules.
+            </a>
+          </p>
         </div>
       ) : (
         // Game view without duplicate navigation
