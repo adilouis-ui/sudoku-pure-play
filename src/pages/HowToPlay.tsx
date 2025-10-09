@@ -6,8 +6,8 @@ const HowToPlay = () => {
     <div className="bg-white">
       <Helmet>
         <title>How to Play Sudoku: A Simple Guide for Beginners | Kuku Sudoku</title>
-        <meta name="description" content="A simple guide for beginners on how to play Sudoku. Learn the basic rules, simple tips, and easy techniques to solve your first puzzle. Play free, ad-free Sudoku online at Kuku Sudoku." />
-        {/* We will add JSON-LD Schema in a future step when visuals are added */}
+        <meta name="description" content="A simple guide for beginners on how to play Sudoku. Learn the basic rules, simple tips, and easy techniques to solve your first puzzle." />
+        <link rel="canonical" href="https://kukusudoku.com/how-to-play" />
       </Helmet>
 
       <div className="container mx-auto px-4 py-8 max-w-3xl">
