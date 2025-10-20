@@ -29,6 +29,8 @@ const HowToPlay = () => {
           <li><strong>3x3 Box</strong> (the smaller squares within the grid)</li>
         </ul>
 
+        <img src="/assets/visual-anatomy.svg" alt="Diagram showing the rows, columns, and 3x3 boxes of a Sudoku grid" className="w-full max-w-sm mx-auto my-8 border rounded-lg shadow-md" />
+
         <h2 className="text-3xl font-bold mb-4 text-gray-800 border-t pt-6">The Easiest Way to Start</h2>
         <div className="text-lg text-gray-600 space-y-4 mb-8">
           <p><strong>Step 1: Look for an Almost-Full Area.</strong> Scan the board for any row, column, or 3x3 box that is nearly complete and has only one or two empty squares.</p>
